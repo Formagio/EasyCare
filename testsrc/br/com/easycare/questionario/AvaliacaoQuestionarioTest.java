@@ -48,21 +48,20 @@ public class AvaliacaoQuestionarioTest {
 		// Testa se a lista de metas contém a meta definida pelo teste
 		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(PerdaPesoComNatacao.class.getName())).findFirst().isPresent());
 	}
-	
 	@Test
-	//caso de teste 4
+	//caso de teste 3
 	public void deveSugerirExameDeProstata() {
 		
 		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		Date date = null;
 		try {
-			date = (Date)formatter.parse("01/29/1968");
+			date = (Date)formatter.parse("01/29/1973");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
 		questionario.setDataNascimento(date);
-		questionario.setPossuiHistoricoFamiliarCancerProstata(false);
+		questionario.setPossuiHistoricoFamiliarCancerProstata(true);
 		questionario.setGenero("M");
 		
 		/*Avaliacao avaliacao = new Avaliacao(questionario);
@@ -70,4 +69,23 @@ public class AvaliacaoQuestionarioTest {
 		
 		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(PerdaPesoComNatacao.class.getName())).findFirst().isPresent());*/
 	}
+	
+	
+	//caso de teste 5
+		public void deveSugerirExameDeMama() {
+			
+			DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+			Date date = null;
+			try {
+				date = (Date)formatter.parse("01/29/1978");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			questionario.setDataNascimento(date);
+			questionario.setPossuiHistoricoFamiliarCancerProstata(false);
+			questionario.setGenero("F");
+			
+			
+		}
 }

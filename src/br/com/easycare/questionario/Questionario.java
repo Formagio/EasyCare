@@ -14,7 +14,7 @@ public class Questionario {
 	private Date dataNascimento;
 	private boolean possuiProblemaNasArticulacoes;	
 	private boolean possuiHistoricoFamiliarCancerProstata;
-
+	private boolean possuiHistoricoFamiliarCancerMama;
 	
 	private final float IMC_MINIMO_FAIXA_PESO_IDEAL = 18.5f;
 	private final float IMC_MAXIMO_FAIXA_PESO_IDEAL = 25;
@@ -93,6 +93,15 @@ public class Questionario {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
+
+	public boolean isPossuiHistoricoFamiliarCancerMama() {
+		return possuiHistoricoFamiliarCancerMama;
+	}
+
+	public void setPossuiHistoricoFamiliarCancerMama(boolean possuiHistoricoFamiliarCancerMama) {
+		this.possuiHistoricoFamiliarCancerMama = possuiHistoricoFamiliarCancerMama;
+	}
+	
 	
 	
 }
