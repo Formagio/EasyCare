@@ -1,5 +1,9 @@
 package br.com.easycare.questionario;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -45,4 +49,25 @@ public class AvaliacaoQuestionarioTest {
 		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(PerdaPesoComNatacao.class.getName())).findFirst().isPresent());
 	}
 	
+	@Test
+	//caso de teste 4
+	public void deveSugerirExameDeProstata() {
+		
+		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		Date date = null;
+		try {
+			date = (Date)formatter.parse("01/29/1968");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		questionario.setDataNascimento(date);
+		questionario.setPossuiHistoricoFamiliarCancerProstata(false);
+		questionario.setGenero("M");
+		
+		/*Avaliacao avaliacao = new Avaliacao(questionario);
+		List<Meta> metas = avaliacao.avaliar();
+		
+		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(PerdaPesoComNatacao.class.getName())).findFirst().isPresent());*/
+	}
 }

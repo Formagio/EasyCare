@@ -2,6 +2,7 @@ package br.com.easycare.questionario;
 
 import java.util.ArrayList;
 import java.util.List;
+import br.com.easycare.meta.AlertaExameP;
 import br.com.easycare.meta.Meta;
 import br.com.easycare.meta.PerdaPesoComCorrida;
 import br.com.easycare.meta.PerdaPesoComNatacao;
@@ -25,6 +26,7 @@ public class Avaliacao {
 		if (new PerdaPesoComNatacao().PodeSerAplicada(questionario)) {
 			metas.add(new PerdaPesoComNatacao());
 		}
+		//PAREI AQUI  if (new AlertaExameP)
 		
 		// Busca todas as classes que implementam a interface Meta
 		/*ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
