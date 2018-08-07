@@ -94,7 +94,7 @@ public class Questionario {
 		this.genero = genero;
 	}
 
-	public boolean isPossuiHistoricoFamiliarCancerMama() {
+	public boolean PossuiHistoricoFamiliarCancerMama() {
 		return possuiHistoricoFamiliarCancerMama;
 	}
 
