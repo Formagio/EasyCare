@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.easycare.meta.AlertaExameM;
 import br.com.easycare.meta.AlertaExameP;
+import br.com.easycare.meta.AlertaQuantidadeHorasIdealSono;
 import br.com.easycare.meta.Meta;
 import br.com.easycare.meta.PerdaPesoComCorrida;
 import br.com.easycare.meta.PerdaPesoComNatacao;
@@ -34,9 +35,12 @@ public class Avaliacao {
 		}
 		
 		if (new AlertaExameM().PodeSerAplicada(questionario)) {
-			metas.add(new AlertaExameP());
+			metas.add(new AlertaExameM());
 		}
 		
+		if(new AlertaQuantidadeHorasIdealSono().PodeSerAplicada(questionario)) {
+			metas.add(new AlertaQuantidadeHorasIdealSono());
+		}
 		
 		// Busca todas as classes que implementam a interface Meta
 		/*ClassLoader classLoader = Thread.currentThread().getContextClassLoader();

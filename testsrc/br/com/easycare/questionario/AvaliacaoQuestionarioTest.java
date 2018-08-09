@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.easycare.meta.AlertaExameP;
+import br.com.easycare.meta.AlertaQuantidadeHorasIdealSono;
 import br.com.easycare.meta.Meta;
 import br.com.easycare.meta.PerdaPesoComCorrida;
 import br.com.easycare.meta.PerdaPesoComNatacao;
@@ -73,23 +74,47 @@ public class AvaliacaoQuestionarioTest {
 	
 	
 	//caso de teste 4
-		public void deveSugerirExameDeMama() {
-			
-			DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-			Date date = null;
-			try {
-				date = (Date)formatter.parse("01/29/1978");
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
-			questionario.setDataNascimento(date);
-			questionario.setPossuiHistoricoFamiliarCancerMama(false);
-			questionario.setGenero("F");
-			
-			Avaliacao avaliacao = new Avaliacao(questionario);
-			List<Meta> metas = avaliacao.avaliar();
-			
-			Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(AlertaExameP.class.getName())).findFirst().isPresent());
+	@Test
+	public void deveSugerirExameDeMama() {
+		
+		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		Date date = null;
+		try {
+			date = (Date)formatter.parse("01/29/1978");
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
+		
+		questionario.setDataNascimento(date);
+		questionario.setPossuiHistoricoFamiliarCancerMama(false);
+		questionario.setGenero("F");
+		
+		Avaliacao avaliacao = new Avaliacao(questionario);
+		List<Meta> metas = avaliacao.avaliar();
+		
+		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(AlertaExameP.class.getName())).findFirst().isPresent());
+	}
+	
+	// caso de teste 5
+	@Test
+	public void deveSugerirQuantidadeHorasIdealDeSono() {
+		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date dateStart = null;
+		Date dateEnd = null;
+		try {
+			dateStart = (Date)formatter.parse("08/07/2018 23:00");
+			dateEnd = (Date)formatter.parse("08/08/2018 05:30");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		questionario.setDataInicioSono(dateStart);
+		questionario.setDataFinalSono(dateEnd);
+		
+		Avaliacao avaliacao = new Avaliacao(questionario);
+		List<Meta> metas = avaliacao.avaliar();
+		
+		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(AlertaQuantidadeHorasIdealSono.class.getName())).findFirst().isPresent());
+		
+	}
 }
