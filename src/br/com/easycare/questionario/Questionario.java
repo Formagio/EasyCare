@@ -12,6 +12,8 @@ public class Questionario {
 			
 
 	private Date dataNascimento;
+	private Date dataInicioSono;
+	private Date dataFinalSono;
 	private boolean possuiProblemaNasArticulacoes;	
 	private boolean possuiHistoricoFamiliarCancerProstata;
 	private boolean possuiHistoricoFamiliarCancerMama;
@@ -102,6 +104,19 @@ public class Questionario {
 		this.possuiHistoricoFamiliarCancerMama = possuiHistoricoFamiliarCancerMama;
 	}
 	
+	public void setDataInicioSono(Date date) {
+		this.dataInicioSono = date;
+	}
 	
+	public Date getDataInicioSono() {
+		return this.dataInicioSono;
+	}
 	
+	public void setDataFinalSono(Date date) {
+		this.dataFinalSono = date;
+	}
+	
+	public Date getDataFinalSono() {
+		return this.dataFinalSono;
+	}
 }
