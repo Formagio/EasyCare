@@ -1,6 +1,6 @@
 package br.com.easycare.atividade;
 
-public interface Atividade {
+public interface IAtividade {
 	
 	public String getDescricao();
 	

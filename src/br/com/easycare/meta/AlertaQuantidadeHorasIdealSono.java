@@ -3,29 +3,33 @@ package br.com.easycare.meta;
 import java.util.Arrays;
 import java.util.List;
 
-import br.com.easycare.atividade.Atividade;
+import br.com.easycare.atividade.IAtividade;
 import br.com.easycare.atividade.SonoIdeal;
 import br.com.easycare.questionario.Questionario;
 
-public class AlertaQuantidadeHorasIdealSono implements Meta {
+public class AlertaQuantidadeHorasIdealSono implements IMeta {
+	
 	@Override
 	public String getDescricao() {
-		return "Para manter seu equilíbrio e a produtividade alta procure dormir de 7 a 9 horas por noite.";
+		return "Para manter seu equilíbrio e a produtividade alta procure dormir de 7 a 9 horas por noite";
 	}
 	
 	@Override
-	public List<Atividade> getAtividades() {
+	public List<IAtividade> getAtividades() {
 		return Arrays.asList(new SonoIdeal());
 	}
   
 	@Override
 	public boolean PodeSerAplicada(Questionario questoes) {
-		
-		long diferencaMS = questoes.getDataInicioSono().getTime() - questoes.getDataFinalSono().getTime();
-	    long diferencaSegundos = diferencaMS / 1000;
-	    long diferencaMinutos = diferencaSegundos / 60;
-	    long diferencaHoras = diferencaMinutos / 60;
-		
-		return diferencaHoras < 7 || diferencaHoras > 11;
+		try {
+			long diferencaMS = questoes.getDataInicioSono().getTime() - questoes.getDataFinalSono().getTime();
+		    long diferencaSegundos = diferencaMS / 1000;
+		    long diferencaMinutos = diferencaSegundos / 60;
+		    long diferencaHoras = diferencaMinutos / 60;
+			
+			return diferencaHoras < 7 || diferencaHoras > 11;
+		} catch (Exception ex) {
+			return false;
+		}
 	}
 }

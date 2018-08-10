@@ -1,7 +1,6 @@
 package br.com.easycare.questionario;
-import java.util.Calendar;
+
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class Questionario {
 	
@@ -9,9 +8,6 @@ public class Questionario {
 	private float peso;
 	private int idade;
 	private String genero;
-			
-
-	private Date dataNascimento;
 	private Date dataInicioSono;
 	private Date dataFinalSono;
 	private boolean possuiProblemaNasArticulacoes;	
@@ -57,27 +53,12 @@ public class Questionario {
 		return this.peso / (this.altura * this.altura);
 	}
 	
-	public Date getDataNascimento() {
-		return this.dataNascimento;
-	}
-	
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-	
 	public int getIdade() {
 		return this.idade; 
 	}
 		
-	public void setIdade() {	
-		GregorianCalendar hj=new GregorianCalendar();
-		GregorianCalendar nascimento=new GregorianCalendar();
-		if(this.getDataNascimento()!=null){
-			nascimento.setTime(this.getDataNascimento());
-		}		
-		int anohj=hj.get(Calendar.YEAR);
-		int anoNascimento=nascimento.get(Calendar.YEAR);
-		this.idade = (anohj-anoNascimento);
+	public void setIdade(int idade) {	
+		this.idade = idade;
 	}
 	
 	public boolean PossuiHistoricoFamiliarCancerProstata() {
@@ -119,4 +100,5 @@ public class Questionario {
 	public Date getDataFinalSono() {
 		return this.dataFinalSono;
 	}
+	
 }

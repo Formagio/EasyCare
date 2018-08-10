@@ -3,11 +3,11 @@ package br.com.easycare.meta;
 import java.util.Arrays;
 import java.util.List;
 
-import br.com.easycare.atividade.Atividade;
+import br.com.easycare.atividade.IAtividade;
 import br.com.easycare.atividade.Natacao;
 import br.com.easycare.questionario.Questionario;
 
-public class PerdaPesoComNatacao implements Meta {
+public class PerdaPesoComNatacao implements IMeta {
 	
 	@Override
 	public String getDescricao() {
@@ -15,14 +15,18 @@ public class PerdaPesoComNatacao implements Meta {
 	}
 
 	@Override
-	public List<Atividade> getAtividades() {
+	public List<IAtividade> getAtividades() {
 		return Arrays.asList(new Natacao());
 	}
 	
 	@Override
 	public boolean PodeSerAplicada(Questionario questoes) {
-		return questoes.estaAcimaDoPesoIdeal() &&
-			questoes.getPossuiProblemaNasArticulacoes();
+		try {
+			return questoes.estaAcimaDoPesoIdeal() &&
+				questoes.getPossuiProblemaNasArticulacoes();
+		} catch (Exception ex) {
+			return false;
+		}
 	}
 	
 }

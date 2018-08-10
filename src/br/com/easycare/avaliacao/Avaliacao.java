@@ -1,14 +1,15 @@
-package br.com.easycare.questionario;
+package br.com.easycare.avaliacao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.easycare.meta.AlertaExameM;
-import br.com.easycare.meta.AlertaExameP;
+import br.com.easycare.meta.AlertaExameMama;
+import br.com.easycare.meta.AlertaExameProstata;
 import br.com.easycare.meta.AlertaQuantidadeHorasIdealSono;
-import br.com.easycare.meta.Meta;
+import br.com.easycare.meta.IMeta;
 import br.com.easycare.meta.PerdaPesoComCorrida;
 import br.com.easycare.meta.PerdaPesoComNatacao;
+import br.com.easycare.questionario.Questionario;
 
 public class Avaliacao {
 	
@@ -18,24 +19,24 @@ public class Avaliacao {
 		this.questionario = questionario;
 	}
 	
-	public List<Meta> avaliar() {
-		ArrayList<Meta> metas = new ArrayList<Meta>();
+	public List<IMeta> avaliar() {
+		ArrayList<IMeta> metas = new ArrayList<IMeta>();
 		
 		//TODO: usar reflexão
 		if (new PerdaPesoComCorrida().PodeSerAplicada(questionario)) {
 			metas.add(new PerdaPesoComCorrida());
 		}
 		
-;		if (new PerdaPesoComNatacao().PodeSerAplicada(questionario)) {
+		if (new PerdaPesoComNatacao().PodeSerAplicada(questionario)) {
 			metas.add(new PerdaPesoComNatacao());
 		}
 		
-		if (new AlertaExameP().PodeSerAplicada(questionario)) {
-			metas.add(new AlertaExameP());
+		if (new AlertaExameProstata().PodeSerAplicada(questionario)) {
+			metas.add(new AlertaExameProstata());
 		}
 		
-		if (new AlertaExameM().PodeSerAplicada(questionario)) {
-			metas.add(new AlertaExameM());
+		if (new AlertaExameMama().PodeSerAplicada(questionario)) {
+			metas.add(new AlertaExameMama());
 		}
 		
 		if(new AlertaQuantidadeHorasIdealSono().PodeSerAplicada(questionario)) {
@@ -63,4 +64,5 @@ public class Avaliacao {
 		
 		return metas;
 	}
+	
 }

@@ -1,4 +1,4 @@
-package br.com.easycare.questionario;
+package br.com.easycare.avaliacao;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -10,13 +10,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.easycare.meta.AlertaExameP;
+import br.com.easycare.avaliacao.Avaliacao;
+import br.com.easycare.meta.AlertaExameMama;
+import br.com.easycare.meta.AlertaExameProstata;
 import br.com.easycare.meta.AlertaQuantidadeHorasIdealSono;
-import br.com.easycare.meta.Meta;
+import br.com.easycare.meta.IMeta;
 import br.com.easycare.meta.PerdaPesoComCorrida;
 import br.com.easycare.meta.PerdaPesoComNatacao;
+import br.com.easycare.questionario.Questionario;
 
-public class AvaliacaoQuestionarioTest {
+public class AvaliacaoTest {
 	
 	private Questionario questionario;
 	
@@ -32,7 +35,7 @@ public class AvaliacaoQuestionarioTest {
 		questionario.setPossuiProblemaNasArticulacoes(false);
 		
 		Avaliacao avaliacao = new Avaliacao(questionario);
-		List<Meta> metas = avaliacao.avaliar();
+		List<IMeta> metas = avaliacao.avaliar();
 		
 		// Testa se a lista de metas contém a meta definida pelo teste
 		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(PerdaPesoComCorrida.class.getName())).findFirst().isPresent());
@@ -45,54 +48,36 @@ public class AvaliacaoQuestionarioTest {
 		questionario.setPossuiProblemaNasArticulacoes(true);
 		
 		Avaliacao avaliacao = new Avaliacao(questionario);
-		List<Meta> metas = avaliacao.avaliar();
+		List<IMeta> metas = avaliacao.avaliar();
 		
 		// Testa se a lista de metas contém a meta definida pelo teste
 		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(PerdaPesoComNatacao.class.getName())).findFirst().isPresent());
 	}
 	@Test
 	//caso de teste 3
-	public void deveSugerirExameDeProstata() {
-		
-		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-		Date date = null;
-		try {
-			date = (Date)formatter.parse("01/29/1973");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		questionario.setDataNascimento(date);
+	public void deveSugerirExameDeProstata() {		
+		questionario.setIdade(50);
 		questionario.setPossuiHistoricoFamiliarCancerProstata(true);
 		questionario.setGenero("M");
 		
 		Avaliacao avaliacao = new Avaliacao(questionario);
-		List<Meta> metas = avaliacao.avaliar();
+		List<IMeta> metas = avaliacao.avaliar();
 		
-		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(AlertaExameP.class.getName())).findFirst().isPresent());
+		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(AlertaExameProstata.class.getName())).findFirst().isPresent());
 	}
 	
 	
 	//caso de teste 4
 	@Test
-	public void deveSugerirExameDeMama() {
-		
-		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-		Date date = null;
-		try {
-			date = (Date)formatter.parse("01/29/1978");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		questionario.setDataNascimento(date);
+	public void deveSugerirExameDeMama() {		
+		questionario.setIdade(40);
 		questionario.setPossuiHistoricoFamiliarCancerMama(false);
 		questionario.setGenero("F");
 		
 		Avaliacao avaliacao = new Avaliacao(questionario);
-		List<Meta> metas = avaliacao.avaliar();
+		List<IMeta> metas = avaliacao.avaliar();
 		
-		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(AlertaExameP.class.getName())).findFirst().isPresent());
+		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(AlertaExameMama.class.getName())).findFirst().isPresent());
 	}
 	
 	// caso de teste 5
@@ -112,9 +97,8 @@ public class AvaliacaoQuestionarioTest {
 		questionario.setDataFinalSono(dateEnd);
 		
 		Avaliacao avaliacao = new Avaliacao(questionario);
-		List<Meta> metas = avaliacao.avaliar();
+		List<IMeta> metas = avaliacao.avaliar();
 		
 		Assert.assertTrue(metas.stream().filter(o -> o.getClass().getName().equals(AlertaQuantidadeHorasIdealSono.class.getName())).findFirst().isPresent());
-		
 	}
 }

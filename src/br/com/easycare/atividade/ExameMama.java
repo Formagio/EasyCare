@@ -1,6 +1,6 @@
 package br.com.easycare.atividade;
 
-public class ExameM implements Atividade{
+public class ExameMama implements IAtividade{
 	@Override
 	public String getDescricao() {
 		return "Exame de Mama";
