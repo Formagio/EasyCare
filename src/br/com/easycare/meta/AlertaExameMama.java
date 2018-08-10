@@ -20,12 +20,11 @@ public class AlertaExameMama implements IMeta {
 	}
   
 	@Override
-	public boolean PodeSerAplicada(Questionario questoes) {
-		try
-		{
-			return questoes.getGenero().equals("F") && (
-				(questoes.getIdade() >= 40 && !questoes.PossuiHistoricoFamiliarCancerMama()) || 
-				(questoes.getIdade() >= 35 && questoes.PossuiHistoricoFamiliarCancerMama()));
+	public boolean PodeSerAplicada(Questionario questionario) {
+		try {
+			return questionario.getGenero().equals("F") && (
+				(questionario.getIdade() >= 40 && !questionario.PossuiHistoricoFamiliarCancerMama()) || 
+				(questionario.getIdade() >= 35 && questionario.PossuiHistoricoFamiliarCancerMama()));
 		} catch (Exception ex) {
 			return false;
 		}

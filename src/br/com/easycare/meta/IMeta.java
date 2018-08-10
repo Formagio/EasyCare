@@ -9,6 +9,6 @@ public interface IMeta {
 	
 	public String getDescricao();
 	public List<IAtividade> getAtividades();
-	public boolean PodeSerAplicada(Questionario questoes);
+	public boolean PodeSerAplicada(Questionario questionario);
 	
 }

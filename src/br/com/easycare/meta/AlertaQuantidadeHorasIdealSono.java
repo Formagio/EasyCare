@@ -20,9 +20,9 @@ public class AlertaQuantidadeHorasIdealSono implements IMeta {
 	}
   
 	@Override
-	public boolean PodeSerAplicada(Questionario questoes) {
+	public boolean PodeSerAplicada(Questionario questionario) {
 		try {
-			long diferencaMS = questoes.getDataInicioSono().getTime() - questoes.getDataFinalSono().getTime();
+			long diferencaMS = questionario.getDataInicioSono().getTime() - questionario.getDataFinalSono().getTime();
 		    long diferencaSegundos = diferencaMS / 1000;
 		    long diferencaMinutos = diferencaSegundos / 60;
 		    long diferencaHoras = diferencaMinutos / 60;

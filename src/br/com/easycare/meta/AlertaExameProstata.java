@@ -20,11 +20,11 @@ public class AlertaExameProstata implements IMeta {
 	}
   
 	@Override
-	public boolean PodeSerAplicada(Questionario questoes) {
+	public boolean PodeSerAplicada(Questionario questionario) {
 		try {
-			return questoes.getGenero().equals("M") && (
-				(questoes.getIdade() >= 50 && !questoes.PossuiHistoricoFamiliarCancerProstata()) || 
-				(questoes.getIdade() >= 45 && questoes.PossuiHistoricoFamiliarCancerProstata()));
+			return questionario.getGenero().equals("M") && (
+				(questionario.getIdade() >= 50 && !questionario.PossuiHistoricoFamiliarCancerProstata()) || 
+				(questionario.getIdade() >= 45 && questionario.PossuiHistoricoFamiliarCancerProstata()));
 		} catch (Exception ex) {
 			return false;
 		}

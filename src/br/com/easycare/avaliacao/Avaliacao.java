@@ -2,6 +2,7 @@ package br.com.easycare.avaliacao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ServiceLoader;
 
 import br.com.easycare.meta.AlertaExameMama;
 import br.com.easycare.meta.AlertaExameProstata;
@@ -44,14 +45,14 @@ public class Avaliacao {
 		}
 		
 		// Busca todas as classes que implementam a interface Meta
-		/*ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		ServiceLoader<Meta> servLoader = ServiceLoader.load(Meta.class, classLoader);
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		ServiceLoader<IMeta> servLoader = ServiceLoader.load(IMeta.class, classLoader);
 		
-		for (Meta driver : servLoader) {
+		for (IMeta driver : servLoader) {
 		   String driverName = driver.getClass().getName();		   
 		   
 		   try {
-			   Meta meta = (Meta) Class.forName(driverName).newInstance();
+			   IMeta meta = (IMeta) Class.forName(driverName).newInstance();
 			   
 			   if (meta.PodeSerAplicada(this.questionario)) {
 				   metas.add(meta);
@@ -60,7 +61,7 @@ public class Avaliacao {
 		   } catch (InstantiationException e) {
 		   } catch (IllegalAccessException e) {
 		   }
-		}*/
+		}
 		
 		return metas;
 	}

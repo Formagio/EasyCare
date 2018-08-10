@@ -20,10 +20,10 @@ public class PerdaPesoComNatacao implements IMeta {
 	}
 	
 	@Override
-	public boolean PodeSerAplicada(Questionario questoes) {
+	public boolean PodeSerAplicada(Questionario questionario) {
 		try {
-			return questoes.estaAcimaDoPesoIdeal() &&
-				questoes.getPossuiProblemaNasArticulacoes();
+			return questionario.estaAcimaDoPesoIdeal() &&
+				questionario.getPossuiProblemaNasArticulacoes();
 		} catch (Exception ex) {
 			return false;
 		}
